@@ -17,6 +17,4 @@ func InitRoute(e *echo.Echo) {
 	eAuth.GET("/comments", controllers.GetCommentController)
 	e.POST("/register", controllers.RegisterController)
 	e.POST("/login", controllers.LoginController)
-	// e.GET("/comments", controllers.GetCommentController)
-	// e.POST("/comments", controllers.CreateCommentsController)
 }
