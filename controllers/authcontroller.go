@@ -43,3 +43,33 @@ func RegisterController(c echo.Context) error {
         Data: userResponse,
 	})
 }
+
+func LoginController(c echo.Context) error {
+	var userLogin models.User
+	c.Bind(&userLogin)
+	err := repositories.Login(c, &userLogin)
+
+	if err != nil {
+        return c.JSON(http.StatusInternalServerError, models.BaseResponse{
+		    Message: err.Error(),
+            Status: false,
+            Data: nil,
+		})
+    }
+
+	var userResponse models.UserResponse
+	userResponse.ID = userLogin.ID
+	userResponse.Name = userLogin.Name
+	userResponse.Token = middlewares.GenerateJWTToken(
+		userResponse.ID,
+		userResponse.Name,
+	)
+
+	return c.JSON(http.StatusOK, models.BaseResponse{
+		Message: "Berhasil Login successfully",
+        Status: true,
+        Data: userResponse,
+	})
+
+
+}

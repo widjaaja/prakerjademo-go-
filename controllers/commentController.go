@@ -41,7 +41,7 @@ func CreateCommentsController(c echo.Context) error {
 		})
     }
 	return c.JSON(http.StatusOK, models.BaseResponse{
-		Message: "Berhasil menambah data",
+		Message: "Berhasil membuat comment",
         Status: true,
         Data: commentsRequest,
 	})

@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"os"
 	"demo-go/controllers"
 
 	echojwt "github.com/labstack/echo-jwt"
@@ -11,10 +12,11 @@ import (
 func InitRoute(e *echo.Echo) {
 	e.Use(middleware.Logger())
 	eAuth := e.Group("")
-	eAuth.Use(echojwt.JWT([]byte("123")))
-	eAuth.POST("/news", controllers.CreateNewsController)
-	eAuth.GET("/news", controllers.GetNewsController)
+	eAuth.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET_KEY"))))
+	eAuth.POST("/comments", controllers.CreateCommentsController)
+	eAuth.GET("/comments", controllers.GetCommentController)
 	e.POST("/register", controllers.RegisterController)
-	e.GET("/comments", controllers.GetCommentController)
-	e.POST("/comments", controllers.CreateCommentsController)
+	e.POST("/login", controllers.LoginController)
+	// e.GET("/comments", controllers.GetCommentController)
+	// e.POST("/comments", controllers.CreateCommentsController)
 }
