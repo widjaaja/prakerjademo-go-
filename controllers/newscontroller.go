@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"net/http"
-	"prakerja12/models"
-	"prakerja12/repositories"
+	"demo-go/models"
+	"demo-go/repositories"
 
 	"github.com/labstack/echo/v4"
 )
@@ -41,7 +41,7 @@ func GetNewsController(c echo.Context) error {
 		})
 	}
 	return c.JSON(http.StatusOK, models.BaseResponse{
-		Message: "Berhasil menampilkan data",
+		Message: "success",
         Status: true,
         Data: news,
 	})

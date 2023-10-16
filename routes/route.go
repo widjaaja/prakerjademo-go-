@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"prakerja12/controllers"
+	"demo-go/controllers"
 
 	echojwt "github.com/labstack/echo-jwt"
 	"github.com/labstack/echo/v4"
@@ -15,4 +15,6 @@ func InitRoute(e *echo.Echo) {
 	eAuth.POST("/news", controllers.CreateNewsController)
 	eAuth.GET("/news", controllers.GetNewsController)
 	e.POST("/register", controllers.RegisterController)
+	e.GET("/comments", controllers.GetCommentController)
+	e.POST("/comments", controllers.CreateCommentsController)
 }

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"prakerja12/configs"
-	"prakerja12/routes"
+	"demo-go/configs"
+	"demo-go/routes"
 
 	"github.com/labstack/echo/v4"
 )

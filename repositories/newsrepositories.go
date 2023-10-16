@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"prakerja12/configs"
-	"prakerja12/models"
+	"demo-go/configs"
+	"demo-go/models"
 )
 
 func GetNews(newsList *[]models.News) error {

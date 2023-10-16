@@ -1,9 +1,10 @@
 package configs
 
 import (
-	"prakerja12/models"
+	"net/url"
 
-	"gorm.io/driver/mysql"
+	"demo-go/models"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
@@ -11,9 +12,12 @@ import (
 var DB *gorm.DB
 
 func InitDatabase() {
-	dsn := "root:123ABC4d.@tcp(127.0.0.1:3306)/prakerja12?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "postgres://avnadmin:AVNS_h2hsxPs7zF_ljiAf1v4@deploy-postgresql-deploy-postgresql.aivencloud.com:12446/defaultdb?sslmode=require"
+	conn, _ := url.Parse(dsn)
+	conn.RawQuery = "sslmode=verify-ca;sslrootcert=ca.pem"
+	
 	var err error
-	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	DB, err = gorm.Open(postgres.Open(conn.String()), &gorm.Config{})
 	if err != nil {
         panic("failed to connect database")
     }
@@ -21,5 +25,5 @@ func InitDatabase() {
 }
 
 func InitMigration(){
-	DB.AutoMigrate(&models.News{}, &models.User{})
+	DB.AutoMigrate(&models.Comments{}, &models.User{})
 }

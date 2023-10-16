@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"net/http"
-	"prakerja12/middlewares"
-	"prakerja12/models"
-	"prakerja12/repositories"
+	"demo-go/middlewares"
+	"demo-go/models"
+	"demo-go/repositories"
 
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
@@ -30,11 +30,10 @@ func RegisterController(c echo.Context) error {
     }
 
 	var userResponse models.UserResponse
-	userResponse.Id = userRegister.Id
+	userResponse.ID = userRegister.ID
 	userResponse.Name = userRegister.Name
-	userResponse.Email = userRegister.Email
 	userResponse.Token = middlewares.GenerateJWTToken(
-		userResponse.Id,
+		userResponse.ID,
 		userResponse.Name,
 	)
 
