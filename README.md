@@ -1,7 +1,7 @@
 
-# Project Title
+# Demo Prakerja Batch 12
 
-Demo Prakerja Batch 12
+Built simple App REST API with GO
 
 List API
 
